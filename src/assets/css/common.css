@@ -1,0 +1,145 @@
+body,
+html {
+    min-height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    color: #242729;
+    background: #fff;
+}
+
+@font-face {
+    font-family: "iconfont";
+    src: url('../font/iconfont.eot?t=1471339595');
+    /* IE9*/
+    src: url('../font/iconfont.eot?t=1471339595#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/iconfont.woff?t=1471339595') format('woff'), /* chrome, firefox */
+    url('../font/iconfont.ttf?t=1471339595') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg?t=1471339595#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    vertical-align: middle;
+}
+
+body,
+html,
+li,
+input,
+gloabl,
+h2,
+th,
+input,
+nav,
+td,
+h1,
+embed,
+blockquote,
+ol,
+xml,
+div,
+dl,
+dt,
+dd,
+ul,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+abbr,
+p,
+header,
+hgroup,
+Section,
+figure,
+section,
+nav,
+article,
+aside,
+canvas {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    font-size: 100%;
+    border: 0;
+    color: #333;
+    text-decoration: none;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+input,
+textarea {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-appearance: none;
+}
+
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clear {
+    clear: both;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+*+html .clearfix {
+    min-height: 1px;
+
+}
+/* chengyuhan */
+.marauto_width_1100 {
+  width: 1100px;
+  margin: 61px auto 0;
+}
+.btn-submit {
+    color: #FFF;
+    background-color: #0095ff;
+    border-color: #07c;
+    box-shadow: inset 0 1px 0 #66bfff;
+    padding: 8px 13px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
+  }
