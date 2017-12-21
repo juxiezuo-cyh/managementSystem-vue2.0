@@ -19,9 +19,6 @@
       <li>
         没有账号？ <router-link to="/signUp" class="sign-up">注册</router-link>
       </li>
-      <!-- <li>
-        Are you an employer? <a href="" class="log-in-on-talent">Log in on Talent</a>
-      </li> -->
     </ul>
   </div>
 </template>
