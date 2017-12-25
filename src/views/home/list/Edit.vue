@@ -15,40 +15,37 @@
       英文标签：
       <a :key="index" v-for="(item, index) in raw.qas_tags">{{item}}</a>
     </div>
-    <div class="line"></div>
+
     <!-- 问题详细描述 -->
     <div class="center">
-      中文内容区：
-      <quill-editor
-        ref="ChineseContentEditor"
-        v-model="ChineseContent">
-      </quill-editor>
+      <el-collapse v-model="activeNames">
+        <el-collapse-item title="中文内容区：" name="1">
+          <quill-editor
+            ref="ChineseContentEditor"
+            v-model="ChineseContent">
+          </quill-editor>
+        </el-collapse-item>
+        <el-collapse-item title="英文内容区：" name="2">
+          <quill-editor
+            ref="EnglishContentEditor"
+            v-model="EnglishContent">
+          </quill-editor>
+        </el-collapse-item>
+        <el-collapse-item title="中文答案区：" name="3">
+          <quill-editor
+            ref="ChineseAnswerEdit"
+            v-model="ChineseAnswer">
+          </quill-editor>
+        </el-collapse-item>
+        <el-collapse-item title="英文答案区：" name="4">
+          <quill-editor
+            ref="EnglishAnswerEdit"
+            v-model="EnglishAnswer">
+          </quill-editor>
+        </el-collapse-item>
+      </el-collapse>
     </div>
     <div class="line"></div>
-    <div class="center">
-      英文内容区：
-      <quill-editor
-        ref="EnglishContentEditor"
-        v-model="EnglishContent">
-      </quill-editor>
-    </div>
-    <div class="line"></div>
-    <div class="center">
-      中文答案区：
-      <quill-editor 
-        ref="ChineseAnswerEdit"
-        v-model="ChineseAnswer">
-      </quill-editor>
-      <div class="line"></div>
-    </div>
-    <div class="center">
-      英文答案区：
-      <quill-editor 
-        ref="EnglishAnswerEdit"
-        v-model="EnglishAnswer">
-      </quill-editor>
-      <div class="line"></div>
-    </div>
     <div>
       <a  class="btn-submit" @click.prevent="deleteBtn">删除</a>
       <a  class="btn-submit" @click.prevent="saveBtn">保存</a>
@@ -78,6 +75,7 @@
         ChineseTitle:'',
         url: '',
         raw: {},
+        activeNames: [],
         trans:{}
       }
     },
@@ -196,13 +194,12 @@
   }
   .titile {
     font-weight: normal;
-    border-bottom: 1px solid #E4E6E8;
   }
   .titile a:nth-child(1) {
     font-size: 24px;
     color: #242729;
     display: block;
-    padding: 40px 0 10px;
+    padding: 20px 0 10px;
   }
   .titile a:nth-child(2) {
     font-size: 15px;
@@ -216,6 +213,7 @@
     color: #242729;
     line-height: 22px;
     margin: 10px auto;
+    width: 100%;
   }
   .detail {
     margin-top:10px;
@@ -228,7 +226,7 @@
     background: #EFF0F1;
   }
   .flg {
-    margin: 25px auto;
+    margin: 20px auto 0;
     border-bottom: #E4E6E8;
   }
   .flg a {
