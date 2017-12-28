@@ -17,11 +17,8 @@
           <el-button @click="resetForm('ruleForm2')">重置</el-button>
         </el-form-item>
       </el-form>
-    </div>
+    </div>   
     <ul class="switch">
-      <!-- <li>
-        Don't have an account? <a href="" class="sign-up">注册</a>
-      </li> -->
       <li>
         已有账号? <router-link to='/logIn' class="log-in-on-talent">登录</router-link>
       </li>
