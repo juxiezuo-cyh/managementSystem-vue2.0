@@ -11,7 +11,6 @@ export function fetchPost(url, params) {
 }
 
 export default {
-  
   soList(params) {
     return fetchPost("/question/so-list", params);
   },
@@ -42,5 +41,13 @@ export default {
   // 问题下线 
   soDelete(params) {
     return fetchPost("/question/so-delete", params);
+  },
+  //登录
+  userLogin(params) {
+    return fetchPost("/user/login", params);
+  },
+  // 注册
+  userSignup(params) {
+    return fetchPost("/user/signup", params);
   }
 };
