@@ -142,7 +142,7 @@
 
 <style scoped>
   .content {
-    margin-top: 150px;
+    margin-top: 110px;
   }
   
   .title {
