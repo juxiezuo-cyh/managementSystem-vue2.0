@@ -114,7 +114,6 @@ export default {
           }
           this.tableData3 = res.data.data;
           this.totalPage = res.data.totalPage;
-          
         } else {
           this.emptyText = res.msg
         }

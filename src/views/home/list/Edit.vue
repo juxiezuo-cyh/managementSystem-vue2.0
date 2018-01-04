@@ -56,7 +56,7 @@
 
 <script>
   import Lib from 'assets/js/Lib'
-  import Api from 'assets/js/api'
+  // import Api from 'assets/js/api'
   import 'quill/dist/quill.core.css'
   import 'quill/dist/quill.snow.css'
   import 'quill/dist/quill.bubble.css'
@@ -101,7 +101,7 @@
     //相关操作事件
     methods: {
       getQuestionDetail() {
-        Api.soShowTrans({ 'id': this.url}).then(res => {
+        Lib.Api.soShowTrans({ 'id': this.url}).then(res => {
           if (res.code === 0) {
             this.raw = res.data.raw;
             this.trans = res.data.trans;

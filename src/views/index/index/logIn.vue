@@ -74,7 +74,9 @@
         };
         Api.userLogin(userData).then(res => {
           if (res.code === 0) {
-            window.location.href = '../home/list.html'
+            // const uid =
+            // Lib.M.Rxports.addCookie('uid',)
+            // window.location.href = '../home/list.html'
           } else {
             alert(res.msg)
           }
@@ -101,13 +103,13 @@
   .content {
     margin-top: 110px;
   }
-  
+
   .title {
     font-size: 20px;
     margin: 20px auto;
     text-align: center;
   }
-  
+
   .info-list {
     width: 350px;
     padding: 25px 32px 10px 0px;
@@ -115,7 +117,7 @@
     margin: 0 auto;
     border: 1px solid #E4E6E8;
   }
-  
+
   .switch {
     text-align: center;
     line-height: 25px;
@@ -124,19 +126,19 @@
     margin: 20px auto 0;
     border: 1px solid #E4E6E8;
   }
-  
+
   .sign-up,
   .log-in-on-talent,
   .more-login-options {
     color: #0077CC;
   }
-  
+
   label {
     font-weight: bold;
     font-size: 13px;
     line-height: 20px;
   }
-  
+
   input {
     width: 263px;
     line-height: 34px;
@@ -149,21 +151,21 @@
     outline: none;
     cursor: auto !important;
   }
-  
+
   input:hover {
     border: #ADD8E6 1px solid;
   }
-  
+
   .forgot {
     text-align: right;
     font-size: 11px;
     margin-bottom: 5px;
   }
-  
+
   .forgot a {
     color: #9FA6AD;
   }
-  
+
   .log-in-btn {
     height: 32px;
     padding: 3px 40px;
@@ -177,7 +179,7 @@
     margin-left: 55px;
     background-color: #0077CC;
   }
-  
+
   .more-login-options {
     line-height: 32px;
   }
