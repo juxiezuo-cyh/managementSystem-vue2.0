@@ -106,6 +106,13 @@
             this.EnglishContent = this.raw.qas_content;
             this.ChineseAnswer = this.trans.qats_answer_one;
             this.ChineseContent = this.trans.qats_content;
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
+            });
           } else {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
@@ -128,6 +135,13 @@
               confirmButtonText: '确定',
               callback: action => {}
             });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
+            });
           } else {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
@@ -140,12 +154,21 @@
         Api.soTransSave({
           id: this.url,
           uid: this.uid,
-          token: this.token
+          token: this.token,
+          title: this.trans.qats_title,
+          tag: this.trans.qats_tags.join(',')
         }).then(res => {
           if (res.code === 0) {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
               callback: action => {}
+            });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
             });
           } else {
             this.$alert(res.msg, '消息提示', {
@@ -165,6 +188,13 @@
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
               callback: action => {}
+            });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
             });
           } else {
             this.$alert(res.msg, '消息提示', {

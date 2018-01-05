@@ -55,13 +55,19 @@
     beforeCreate() {},
     //在挂载开始之前被调用
     beforeMount() {
-      this.getUrl('id')
+
     },
     //已成功挂载，相当ready()
     mounted() {
       this.uid = localStorage.getItem('uid');
       this.token = localStorage.getItem('token');
+      this.getUrl('id');
       this.getQuestionDetail();
+    },
+    watch: {
+      '$route'() {
+        this.getUrl('id')
+      }
     },
     computed: {
       editor() {
@@ -84,6 +90,13 @@
             this.answer = res.data.qas_answer_one;
             this.title = res.data.qas_title;
             this.tag = res.data.qas_tags;
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
+            });
           } else {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
@@ -93,7 +106,7 @@
         })
       },
       getUrl(id) {
-        this.url = Lib.M.getUrlQuery(id)
+        this.url = Lib.M.getUrlQuery(id);
       },
       transBtn() {
         Api.soTrans({
@@ -101,11 +114,17 @@
           uid: this.uid,
           token: this.token
         }).then(res => {
-          console.log(res)
           if (res.code === 0) {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
               callback: action => {}
+            });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
             });
           } else {
             this.$alert(res.msg, '消息提示', {
@@ -131,6 +150,13 @@
               confirmButtonText: '确定',
               callback: action => {}
             });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
+            });
           } else {
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
@@ -149,6 +175,13 @@
             this.$alert(res.msg, '消息提示', {
               confirmButtonText: '确定',
               callback: action => {}
+            });
+          } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
             });
           } else {
             this.$alert(res.msg, '消息提示', {
