@@ -58,10 +58,8 @@ var Rxports = {
   // 是否登录
   isLogin() {
     if (localStorage.getItem('uid') == null || localStorage.getItem('uid') == "" || localStorage.getItem('token') == null || localStorage.getItem('token') == "") {
-      console.log(false)
       return false;
     }
-    console.log(true)
     return true;
   }
 };

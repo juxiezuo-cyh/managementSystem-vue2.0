@@ -2,15 +2,15 @@
   <div class="c-header-box">
     <ul class="c-nav-ul clearfix">
       <li class="c-logo c-nav fl">
-        <a href="../home/list.html">
+        <a href="javascript:void(0);">
           <img src="../assets/img/c-logo.png">
         </a>
       </li>
       <li v-if="!isLogIn" class="fr c-sign-up" ref="signUp">
-        <a href="../index/index.html#/signUp">注册</a>
+        <a href="../index/index.html#/signUp" :class="{'current-active':type === '/signUp'}">注册</a>
       </li>
       <li v-if="!isLogIn" class="c-log-in fr" ref="logIn">
-        <a href="../index/index.html#/logIn">登录</a>
+        <a href="../index/index.html#/logIn"  :class="{'current-active':type === '/logIn'}">登录</a>
       </li>
       <li v-if="isLogIn" class="c-log-in fr" @click="logOut">
         <a href="javascript:void(0);">退出</a>
@@ -26,17 +26,23 @@
     data() {
       return {
         name:'',
-        isLogIn: false
+        isLogIn: false,
+        type:'/logIn'
       }
     },
     mounted () {
       this.isLogIn = Lib.M.isLogin();
-      this.name = localStorage.getItem('name');
+      (this.isLogIn===true) ? (this.name = localStorage.getItem('name')) : this.currentRouter()
     },
     watch: {
-
+      '$route'(){//监听路由的变化
+        this.currentRouter();
+      }
     },
     methods: {
+      currentRouter() {
+        this.type = this.$route.path;
+      },
       logOut() {
         localStorage.clear();//清空本地缓存
         window.location.href = '../index/index.html#/logIn';
@@ -78,7 +84,7 @@
   .c-nav-ul li.c-sign-up {
     padding: 0  12px;
   }
-  .c-nav-ul li a.router-link-active {
+  .c-nav-ul li a.current-active {
     color: #FFF;
     line-height: 32px;
     background-color: #0095ff;
