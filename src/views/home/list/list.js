@@ -10,20 +10,20 @@ const router = new VueRouter({
   // mode: 'history', //加上不好使。出不来
   routes: [
     {
-      path: "/", 
+      path: "/",
       redirect: "/QA"
     },
     {
-      path: "/QA", 
-      component: QA 
+      path: "/QA",
+      component: QA
     },
     {
-      path: "/ST", 
-      component: ST 
+      path: "/ST",
+      component: ST
     },
     {
-      path: "/Edit", 
-      component: Edit 
+      path: "/Edit",
+      component: Edit
     }
   ]
 });

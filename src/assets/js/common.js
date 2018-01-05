@@ -55,61 +55,13 @@ var Rxports = {
     if (reg.test(url)) return unescape(RegExp.$2.replace(/\+/g, " "));
     return "";
   },
-  // 获得cookie
-  getCookie(cookieName) {
-    var arg = cookieName + "=";
-    var alen = arg.length;
-    var clen = document.cookie.length;
-    var i = 0;
-    while (i < clen) {
-      var j = i + alen;
-      if (document.cookie.substring(i, j) == arg) {
-        var endstr = document.cookie.indexOf(";", j);
-        if (endstr == -1) {
-          endstr = document.cookie.length;
-        }
-        var ret = unescape(document.cookie.substring(j, endstr));
-        if (ret != "") {
-          return ret;
-        }
-      }
-      i = document.cookie.indexOf(" ", i) + 1;
-      if (i == 0) break;
-    }
-    return "";
-  },
-  // 删除cookie
-  delCookie(cookieName) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 100);
-    document.cookie =
-      cookieName + "=; path=/; domain=17kx.com; expires=" + exp.toGMTString();
-    document.cookie = cookieName + "=; path=/; expires=" + exp.toGMTString();
-  },
-  // 增加cookie
-  addCookie(cookieName, cookieValue) {
-    var expdate = new Date();
-    var argv = addCookie.arguments;
-    var argc = addCookie.arguments.length;
-    var expires = argc > 2 && argv[2] != 0 ? argv[2] : null;
-    var path = argc > 3 ? argv[3] : null;
-    var domain = argc > 4 ? argv[4] : null;
-    var secure = argc > 5 ? argv[5] : false;
-    if (expires != null) {
-      expdate.setTime(expdate.getTime() + expires * 1000);
-    }
-    document.cookie =
-      cookieName + "=" + escape(cookieValue) +
-      (expires == null ? "" : "; expires=" + expdate.toGMTString()) +
-      (path == null ? "" : "; path=" + path) +
-      (domain == null ? "" : "; domain=" + domain) +
-      (secure == true ? "; secure" : "");
-  },
   // 是否登录
   isLogin() {
-    if (Rxports.getCookie("token") == null || Rxports.getCookie("token") == "" || Rxports.getCookie("uid") == null || Rxports.getCookie("uid") == "") {
+    if (localStorage.getItem('uid') == null || localStorage.getItem('uid') == "" || localStorage.getItem('token') == null || localStorage.getItem('token') == "") {
+      console.log(false)
       return false;
     }
+    console.log(true)
     return true;
   }
 };

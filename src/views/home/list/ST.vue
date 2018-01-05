@@ -36,7 +36,6 @@
   import 'quill/dist/quill.core.css'
   import 'quill/dist/quill.snow.css'
   import 'quill/dist/quill.bubble.css'
-  import Common from 'assets/js/common'
   import { quillEditor } from 'vue-quill-editor'
   export default {
     data() {
@@ -46,7 +45,9 @@
         tag:'',
         answer:'',
         url: '',
-        questionDetail: {}
+        questionDetail: {},
+        uid:'',
+        token:''
       }
     },
     components: {
@@ -60,6 +61,8 @@
     },
     //已成功挂载，相当ready()
     mounted() {
+      this.uid = localStorage.getItem('uid');
+      this.token = localStorage.getItem('token');
       this.getQuestionDetail()
     },
     computed: {
@@ -72,7 +75,7 @@
     methods: {
       // 问题的原始内容接口
       getQuestionDetail() {
-        Api.soStep({ 'id': this.url}).then(res => {
+        Api.soStep({ id: this.url,uid:this.uid,token:this.token }).then(res => {
           if (res.code === 0) {
             this.questionDetail = res.data;
             this.content = res.data.qas_content;
@@ -88,7 +91,7 @@
         })
       },
       getUrl(id) {
-        this.url = Common.getUrlQuery(id)
+        this.url = Lib.M.getUrlQuery(id)
       },
       transBtn() {
         Api.soTrans({ 'id': this.url}).then(res => {

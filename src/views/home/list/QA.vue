@@ -55,6 +55,7 @@
 
 <script>
 import Lib from 'assets/js/Lib'
+import Api from 'assets/js/api'
 export default {
   data() {
     return {
@@ -64,11 +65,15 @@ export default {
       pageSize: 15,
       totalPage: 0,
       multipleSelection: [],
-      emptyText:'加载中'
+      emptyText:'加载中',
+      token:'',
+      uid:''
     }
   },
   mounted(){
-    this.soLists({p:this.currentPage});
+    this.uid = localStorage.getItem('uid');
+    this.token = localStorage.getItem('token');
+    this.soLists({p:this.currentPage,uid:this.uid,token:this.token});
   },
   methods: {
     toggleSelection(rows) {
@@ -87,10 +92,10 @@ export default {
       console.log(val)
     },
     toEdit(row){
-      this.$router.push({path:'/Edit',query:{'id':row.qas_id}});
+      this.$router.push({path:'/Edit',query:{id:row.qas_id}});
     },
     getUrl(id) {
-      this.url = Common.getUrlQuery(id)
+      this.url = Lib.M.getUrlQuery(id);
     },
     // 翻译
     handleClick(row) {
@@ -98,7 +103,7 @@ export default {
     },
     // 状态流转
     statusTransfer(id) {
-      this.$router.push({path:'/ST',query:{'id':id}});
+      this.$router.push({path:'/ST',query:{id:id}});
     },
     // 分页按钮的点击事件
     handleCurrentChange(val) {
@@ -106,7 +111,7 @@ export default {
     },
     // 问题列表接口
     soLists(p) {
-      Lib.Api.soList(p).then(res => {
+      Api.soList(p).then(res => {
         if(res.code === 0) {
           if(res.data.data.length<1) {
             this.emptyText = '暂无数据'

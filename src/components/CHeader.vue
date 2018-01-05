@@ -6,18 +6,43 @@
           <img src="../assets/img/c-logo.png">
         </a>
       </li>
-      <li class="fr c-sign-up" ref="signUp">
-        <router-link to="/signUp">注册</router-link>
+      <li v-if="!isLogIn" class="fr c-sign-up" ref="signUp">
+        <a href="../index/index.html#/signUp">注册</a>
       </li>
-      <li class="c-log-in fr" ref="logIn">
-        <router-link to="/logIn">登录</router-link>
+      <li v-if="!isLogIn" class="c-log-in fr" ref="logIn">
+        <a href="../index/index.html#/logIn">登录</a>
       </li>
+      <li v-if="isLogIn" class="c-log-in fr" @click="logOut">
+        <a href="javascript:void(0);">退出</a>
+      </li>
+      <li v-if="isLogIn" class="c-log-in fr">用户名：{{name}}</li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {}
+  import Lib from 'assets/js/Lib';
+  export default {
+    data() {
+      return {
+        name:'',
+        isLogIn: false
+      }
+    },
+    mounted () {
+      this.isLogIn = Lib.M.isLogin();
+      this.name = localStorage.getItem('name');
+    },
+    watch: {
+
+    },
+    methods: {
+      logOut() {
+        localStorage.clear();//清空本地缓存
+        window.location.href = '../index/index.html#/logIn';
+      }
+    }
+  }
 </script>
 
 <style scoped>

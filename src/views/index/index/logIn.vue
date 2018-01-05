@@ -26,7 +26,7 @@
 
 <script>
   import Lib from 'assets/js/Lib';
-  import Api from 'assets/js/api'
+  import Api from 'assets/js/api';
   export default {
     data() {
       var checkEmail = (rule, value, callback) => {
@@ -66,6 +66,8 @@
         }
       }
     },
+    mounted () {
+    },
     methods: {
       Login() {
         let userData = {
@@ -74,9 +76,11 @@
         };
         Api.userLogin(userData).then(res => {
           if (res.code === 0) {
-            // const uid =
-            // Lib.M.Rxports.addCookie('uid',)
-            // window.location.href = '../home/list.html'
+            const data = res.data;
+            localStorage.setItem('uid',data.uid);
+            localStorage.setItem('token',data.token);
+            localStorage.setItem('name',data.username);
+            window.location.href = '../home/list.html';
           } else {
             alert(res.msg)
           }
