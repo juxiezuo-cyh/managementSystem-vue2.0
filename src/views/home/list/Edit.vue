@@ -156,7 +156,9 @@
           uid: this.uid,
           token: this.token,
           title: this.trans.qats_title,
-          tag: this.trans.qats_tags.join(',')
+          tag: this.trans.qats_tags.join(','),
+          content: this.ChineseContent,
+          answer: this.ChineseAnswer
         }).then(res => {
           if (res.code === 0) {
             this.$alert(res.msg, '消息提示', {
