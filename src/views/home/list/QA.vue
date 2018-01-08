@@ -113,7 +113,14 @@ export default {
           }
           this.tableData3 = res.data.data;
           this.totalPage = res.data.totalPage;
-        } else {
+        } else if (res.code === 10010 || res.code === 10011 || res.code === 10012|| res.code === 10014 || res.code === 10015){
+            this.$alert(res.msg, '消息提示', {
+              confirmButtonText: '确定',
+              callback: action => {
+                window.location.href = '../index/index.html#/logIn';
+              }
+            });
+          } else {
           this.emptyText = res.msg
         }
       })

@@ -117,7 +117,11 @@
         let params = Object.assign({}, userData); //将userData复制到{}中。并且返回给params
         Api.userSignup(params).then(res => {
           if (res.code === 0) {
-            window.location.href = '../home/list.html'
+            const data = res.data;
+            localStorage.setItem('uid',data.uid);
+            localStorage.setItem('token',data.token);
+            localStorage.setItem('name',data.username);
+            window.location.href = '../home/list.html';
           } else {
             alert(res.msg)
           }
