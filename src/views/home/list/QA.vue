@@ -81,25 +81,18 @@ export default {
         rows.forEach(row => {
           this.$refs.multipleTable.toggleRowSelection(row);
         });
-        console.log(rows)
       } else {
-        console.log(rows)
         this.$refs.multipleTable.clearSelection();
       }
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;
-      console.log(val)
     },
     toEdit(row){
       this.$router.push({path:'/Edit',query:{id:row.qas_id}});
     },
     getUrl(id) {
       this.url = Lib.M.getUrlQuery(id);
-    },
-    // 翻译
-    handleClick(row) {
-      console.log(row);
     },
     // 状态流转
     statusTransfer(id) {
