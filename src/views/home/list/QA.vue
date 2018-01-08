@@ -47,7 +47,8 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         layout="total, prev, pager, next, jumper"
-        :total="totalPage">
+        :page-count="totalPage"
+        >
       </el-pagination>
     </div>
   </div>
@@ -100,7 +101,7 @@ export default {
     },
     // 分页按钮的点击事件
     handleCurrentChange(val) {
-      this.soLists({p:`${val}`});
+      this.soLists({p:`${val}`,uid:this.uid,token:this.token});
     },
     // 问题列表接口
     soLists(p) {
