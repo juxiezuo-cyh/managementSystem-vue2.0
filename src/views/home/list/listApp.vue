@@ -7,9 +7,7 @@
 			<nav-side></nav-side>
       <!-- <menu-side></menu-side> -->
       <el-main>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
       </el-main>
 		</el-container>
 		<el-footer height="60px">Footer</el-footer>

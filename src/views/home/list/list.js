@@ -15,7 +15,13 @@ const router = new VueRouter({
     },
     {
       path: "/QA",
-      component: QA
+      component: QA,
+      children:[
+        {
+          path:':id',
+          component:Edit
+        }
+      ]
     },
     {
       path: "/ST",

@@ -2,18 +2,16 @@
   <div class="right-box">
     <!-- 问题题目 -->
     <h1 class="titile">
-      <a>中文标题：{{trans.qats_title}}</a>
+      <a>中文标题：
+        <input type="text" v-model="ChineseTitle" class="ipt">
+      </a>
     </h1>
     <h1 class="titile">
-      <a>英文标题：{{raw.qas_title}}</a>
+      <a>英文标题：&nbsp;{{raw.qas_title}}</a>
     </h1>
     <div class="flg">
-      中文标签：
+      标签：
       <a :key="index" v-for="(item, index) in trans.qats_tags">{{item}}</a>
-    </div>
-    <div class="flg">
-      英文标签：
-      <a :key="index" v-for="(item, index) in raw.qas_tags">{{item}}</a>
     </div>
     <!-- 问题详细描述 -->
     <div class="center">
@@ -23,7 +21,8 @@
           </quill-editor>
         </el-collapse-item>
         <el-collapse-item title="英文内容区：" name="2">
-          <quill-editor ref="EnglishContentEditor" v-model="EnglishContent">
+          <div v-html="EnglishContent" class="boxEnglish"></div>
+          <!-- <quill-editor ref="EnglishContentEditor" :options="editorOption"  v-model="EnglishContent"> -->
           </quill-editor>
         </el-collapse-item>
         <el-collapse-item title="中文答案区：" name="3">
@@ -31,7 +30,8 @@
           </quill-editor>
         </el-collapse-item>
         <el-collapse-item title="英文答案区：" name="4">
-          <quill-editor ref="EnglishAnswerEdit" v-model="EnglishAnswer">
+          <div v-html="EnglishAnswer" class="boxEnglish"></div>
+          <!-- <quill-editor ref="EnglishAnswerEdit" v-model="EnglishAnswer"> -->
           </quill-editor>
         </el-collapse-item>
       </el-collapse>
@@ -61,14 +61,20 @@
         EnglishAnswer: '',
         ChineseTag: [],
         English: [],
-        EnglishTitle: '',
         ChineseTitle: '',
         url: '',
         raw: {},
         activeNames: [],
         trans: {},
         uid: '',
-        token: ''
+        token: '',
+        // 编辑器的配置参数
+        editorOption: {
+          modules:{
+            toolbar:[{'display':'none'}]
+          },
+          readOnly: true
+        }
       }
     },
     components: {
@@ -79,6 +85,11 @@
     //在挂载开始之前被调用
     beforeMount() {
       this.getUrl('id');
+    },
+    watch: {
+      url(){
+        // this.getQuestionDetail();
+      }
     },
     //已成功挂载，相当ready()
     mounted() {
@@ -102,6 +113,7 @@
           if (res.code === 0) {
             this.raw = res.data.raw;
             this.trans = res.data.trans;
+            this.ChineseTitle = this.trans.qats_title;
             this.EnglishAnswer = this.raw.qas_answer_one;
             this.EnglishContent = this.raw.qas_content;
             this.ChineseAnswer = this.trans.qats_answer_one;
@@ -155,7 +167,7 @@
           id: this.url,
           uid: this.uid,
           token: this.token,
-          title: this.trans.qats_title,
+          title: this.ChineseTitle,
           tag: this.trans.qats_tags.join(','),
           content: this.ChineseContent,
           answer: this.ChineseAnswer
@@ -243,7 +255,7 @@
     font-size: 24px;
     color: #242729;
     display: block;
-    padding: 20px 0 10px;
+    padding: 15px 0 7px;
   }
 
   .titile a:nth-child(2) {
@@ -312,5 +324,21 @@
   .answer-list {
     padding-bottom: 15px;
     border-bottom: 1px solid #E4E6E8;
+  }
+
+  .boxEnglish {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  .ipt{
+    font-size: 24px;
+    color: #242729;
+    display: inline-block;
+    padding: 0 10px 4px;
+    border: none;
+    width: 50%;
+    border-bottom: 1px solid #0095FF;
+    outline: none;
   }
 </style>
