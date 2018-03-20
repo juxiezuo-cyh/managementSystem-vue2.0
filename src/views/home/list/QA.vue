@@ -124,6 +124,9 @@ export default {
           this.emptyText = res.msg
         }
       })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 }
